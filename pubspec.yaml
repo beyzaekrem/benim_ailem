@@ -1,0 +1,59 @@
+name: benim_ailem
+description: "Benim Ailem Uygulaması"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  http: ^1.2.1
+  geolocator: ^14.0.2
+  intl: ^0.20.2
+  video_player: ^2.7.0
+  youtube_player_flutter: ^8.1.1
+  url_launcher: ^6.2.5
+  table_calendar: ^3.0.9
+
+
+dev_dependencies:
+  flutter_localizations:
+    sdk: flutter
+
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/picture/hava_arka_plan.jpg
+    - assets/video/splash_intro.mp4
+    - assets/picture/benimailemlogo.png
+    - assets/picture/logo2.jpg
+    - assets/picture/baskan_logo.png
+    - assets/picture/baskan.jpg
+    - assets/picture/01d@2x.png
+    - assets/picture/01n@2x.png
+    - assets/picture/02d@2x.png
+    - assets/picture/02n@2x.png
+    - assets/picture/03d@2x.png
+    - assets/picture/03n@2x.png
+    - assets/picture/04d@2x.png
+    - assets/picture/04n@2x.png
+    - assets/picture/09d@2x.png
+    - assets/picture/09n@2x.png
+    - assets/picture/10d@2x.png
+    - assets/picture/10n@2x.png
+    - assets/picture/11d@2x.png
+    - assets/picture/11n@2x.png
+    - assets/picture/13d@2x.png
+    - assets/picture/13n@2x.png
+    - assets/picture/50d@2x.png
+    - assets/picture/50n@2x.png
+    - assets/picture/story_icon.png
+    - assets/picture/gunun_menusu.png
