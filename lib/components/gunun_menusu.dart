@@ -14,16 +14,16 @@ class _GununMenusuWidgetState extends State<GununMenusuWidget> {
   // Örnek menüler
   Map<String, List<String>> menuler = {
     '2025-07-23': [
-      'Çorba: Mercimek',
-      'Ana Yemek: Tavuk Sote',
-      'Salata: Çoban Salata',
-      'Tatlı: Kazandibi',
+      'Mercimek',
+      'Tavuk Sote',
+      'Çoban Salata',
+      'Kazandibi',
     ],
     '2025-07-24': [
-      'Çorba: Ezogelin',
-      'Ana Yemek: Karnıyarık',
-      'Pilav: Bulgur Pilavı',
-      'Tatlı: Sütlaç',
+      'Ezogelin',
+      'Karnıyarık',
+      'Bulgur Pilavı',
+      'Sütlaç',
     ],
   };
 

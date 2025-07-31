@@ -20,7 +20,7 @@ class _BildirimlerSayfasiState extends State<BildirimlerSayfasi> with SingleTick
     _tabController = TabController(
       length: 3,
       vsync: this,
-      initialIndex: widget.aktifSekmeIndex, // ✅ Doğru kullanımı bu
+      initialIndex: widget.aktifSekmeIndex,
     );
   }
 

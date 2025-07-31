@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:benim_ailem/pages/duyurular/bildirimler_sayfasi.dart';
+import 'package:benim_ailem/pages/right_drawer/duyurular/bildirimler_sayfasi.dart';
 import 'package:benim_ailem/services/bildirim_servisi.dart';
 
 class HaberlerBolumu extends StatefulWidget {

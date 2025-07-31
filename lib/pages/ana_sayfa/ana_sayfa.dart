@@ -1,22 +1,20 @@
-import 'package:benim_ailem/components/TakvimBolumu.dart';
-import 'package:benim_ailem/pages/dokumanlar/dokumanlar_sayfasi.dart';
-import 'package:benim_ailem/pages/rehber/rehber_sayfasi.dart';
 import 'package:flutter/material.dart';
-import 'package:benim_ailem/widgets/alt_bar.dart';
+import 'package:benim_ailem/components/TakvimBolumu.dart';
+import 'package:benim_ailem/components/gunun_menusu.dart';
+import 'package:benim_ailem/components/bugun/bugun_bolumu.dart';
 import 'package:benim_ailem/components/story_bileseni.dart';
 import 'package:benim_ailem/components/haberler_bolumu.dart';
 import 'package:benim_ailem/components/hava_durumu_bolumu.dart';
-import 'package:benim_ailem/widgets/youtube_widget.dart';
-import 'package:benim_ailem/components/gunun_menusu.dart';
-import 'package:benim_ailem/components/bugun/bugun_bolumu.dart';
+import 'package:benim_ailem/pages/dokumanlar/dokumanlar_sayfasi.dart';
+import 'package:benim_ailem/pages/left_drawer/rehber/rehber_sayfasi.dart';
+import 'package:benim_ailem/pages/left_drawer/personel/personel_semasi_sayfasi.dart';
 import 'package:benim_ailem/pages/yemek/yemekhane_app.dart';
-import 'package:benim_ailem/pages/haberler/haber_arsiv_sayfasi.dart';
 import 'package:benim_ailem/pages/bizden_biri/bizden_biri_sayfasi.dart';
-import 'package:benim_ailem/pages/duyurular/duyurular_sayfasi.dart';
-import 'package:benim_ailem/pages/duyurular/bildirimler_sayfasi.dart';
+import 'package:benim_ailem/pages/right_drawer/duyurular/bildirimler_sayfasi.dart';
+import 'package:benim_ailem/widgets/alt_bar.dart';
+import 'package:benim_ailem/widgets/youtube_widget.dart';
 import 'package:benim_ailem/services/bildirim_servisi.dart';
-import 'package:benim_ailem/components/personel_detay_modal.dart';
-import 'package:benim_ailem/pages/personel/personel_semasi_sayfasi.dart';
+
 class AnaSayfa extends StatefulWidget {
   const AnaSayfa({super.key});
 

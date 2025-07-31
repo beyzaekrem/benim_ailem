@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:benim_ailem/components/personel_detay_modal.dart';
+import 'package:benim_ailem/pages/left_drawer/personel/personel_detay_modal.dart';
 
 class PersonelSemasiSayfasi extends StatelessWidget {
   const PersonelSemasiSayfasi({super.key});
