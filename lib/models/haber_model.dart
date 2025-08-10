@@ -1,10 +1,10 @@
-class HaberServisi {
-  HaberServisi({
+class HaberModel {
+  HaberModel({
     required this.haber_id,
     required this.haber_baslik,
     required this.haber_spot,
     required this.haber_metin,
-    required this.haber_tarih,
+    required this.haber_tarih, 
     required this.haber_url,
     required this.haber_ust_resim,
   });
@@ -15,13 +15,13 @@ class HaberServisi {
   String? haber_metin;
   String? haber_tarih;
   String? haber_url;
-  String? haber_ust_resim;
+  List<dynamic>? haber_ust_resim;
 
-HaberServisi.fromJson(Map<String, dynamic> json)
-      : haber_id = json['id'],
-        haber_baslik = json['baslik'],
-        haber_spot = json['spot'],
-        haber_metin = json['metin'],
+HaberModel.fromJson(Map<String, dynamic> json)
+      : haber_id = json['haber_id'],
+        haber_baslik = json['haber_baslik'],
+        haber_spot = json['haber_spot'],
+        haber_metin = json['haber_metin'],
         haber_tarih = json['haber_tarih'],
         haber_url = json['haber_url'],
         haber_ust_resim = json['haber_ust_resim'];

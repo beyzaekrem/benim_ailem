@@ -129,14 +129,13 @@ class _HaberlerBolumuState extends State<HaberlerBolumu> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Container(
-                            height: 90,
-                            decoration: const BoxDecoration(
-                              color: Colors.white24,
-                              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                            ),
-                            child: const Center(
-                              child: Icon(Icons.image, size: 40, color: Colors.grey),
+                          ClipRRect(
+                            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                            child: Image.asset(
+                              'assets/picture/haber1111.jpg', 
+                              height: 90,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
                             ),
                           ),
                           Expanded(

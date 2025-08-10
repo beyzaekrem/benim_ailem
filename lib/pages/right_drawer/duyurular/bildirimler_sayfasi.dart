@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:benim_ailem/widgets/bildirim_detay_sayfasi.dart';
 import 'package:benim_ailem/services/bildirim_servisi.dart';
 
+// API’den çeken liste widget’ı
+import 'package:benim_ailem/pages/right_drawer/haberler/haberler_listesi.dart';
+
 class BildirimlerSayfasi extends StatefulWidget {
   final int aktifSekmeIndex;
 
@@ -11,7 +14,8 @@ class BildirimlerSayfasi extends StatefulWidget {
   State<BildirimlerSayfasi> createState() => _BildirimlerSayfasiState();
 }
 
-class _BildirimlerSayfasiState extends State<BildirimlerSayfasi> with SingleTickerProviderStateMixin {
+class _BildirimlerSayfasiState extends State<BildirimlerSayfasi>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -38,8 +42,11 @@ class _BildirimlerSayfasiState extends State<BildirimlerSayfasi> with SingleTick
   @override
   Widget build(BuildContext context) {
     final duyurular = BildirimServisi.duyurular;
-    final haberler = BildirimServisi.haberler;
-    final tumu = _getSorted([...duyurular, ...haberler]);
+    // NOT: Haberler tabı artık API’den geliyor; aşağıdaki satıra gerek yok.
+    // final haberler = BildirimServisi.haberler;
+
+    // Şimdilik “Tümü” sekmesi sadece yerel duyuruları gösteriyor.
+    final tumu = _getSorted([...duyurular]);
 
     return Scaffold(
       appBar: AppBar(
@@ -67,7 +74,8 @@ class _BildirimlerSayfasiState extends State<BildirimlerSayfasi> with SingleTick
         children: [
           _buildListView(tumu),
           _buildListView(_getSorted(duyurular)),
-          _buildListView(_getSorted(haberler)),
+          // ✅ Haberler sekmesi artık API’den
+          const HaberlerListesi(),
         ],
       ),
     );
@@ -101,7 +109,9 @@ class _BildirimlerSayfasiState extends State<BildirimlerSayfasi> with SingleTick
           },
           child: Card(
             color: isOkundu ? Colors.grey[200] : Colors.white,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
             elevation: 3,
             margin: const EdgeInsets.only(bottom: 12),
             child: Padding(
@@ -111,7 +121,10 @@ class _BildirimlerSayfasiState extends State<BildirimlerSayfasi> with SingleTick
                 children: [
                   Text(
                     bildirim['baslik'],
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Text(
@@ -135,3 +148,4 @@ class _BildirimlerSayfasiState extends State<BildirimlerSayfasi> with SingleTick
     );
   }
 }
+
