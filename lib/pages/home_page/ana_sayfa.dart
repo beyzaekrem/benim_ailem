@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:benim_ailem/components/TakvimBolumu.dart';
 import 'package:benim_ailem/components/gunun_menusu.dart';
 import 'package:benim_ailem/components/bugun/bugun_bolumu.dart';
 import 'package:benim_ailem/components/story_bileseni.dart';
 import 'package:benim_ailem/components/haberler_bolumu.dart';
 import 'package:benim_ailem/components/hava_durumu_bolumu.dart';
-import 'package:benim_ailem/pages/dokumanlar/dokumanlar_sayfasi.dart';
+import 'package:benim_ailem/pages/left_drawer/dokumanlar/dokumanlar_sayfasi.dart';
 import 'package:benim_ailem/pages/left_drawer/rehber/rehber_sayfasi.dart';
 import 'package:benim_ailem/pages/left_drawer/personel/personel_semasi_sayfasi.dart';
-import 'package:benim_ailem/pages/yemek/yemekhane_app.dart';
-import 'package:benim_ailem/pages/bizden_biri/bizden_biri_sayfasi.dart';
+import 'package:benim_ailem/pages/left_drawer/yemek/yemekhane_app.dart';
+import 'package:benim_ailem/pages/left_drawer/bizden_biri/bizden_biri_sayfasi.dart';
 import 'package:benim_ailem/pages/right_drawer/bildirimler_sayfasi.dart';
 import 'package:benim_ailem/widgets/alt_bar.dart';
 import 'package:benim_ailem/widgets/youtube_widget.dart';
@@ -24,9 +25,54 @@ class AnaSayfa extends StatefulWidget {
 }
 
 class _AnaSayfaState extends State<AnaSayfa> {
+  Future<void> _openKbbAkademi() async {
+    Navigator.pop(context); // önce drawer'ı kapat
+    await Future.delayed(const Duration(milliseconds: 120));
+
+    final url = Uri.parse("https://kbbakademi.edubiz.com.tr/Account/Login?ReturnUrl=%2f");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Bağlantı açılamadı.')),
+      );
+    }
+  }
+
+  Future<void> _mailGonder() async {
+    Navigator.pop(context); // önce drawer'ı kapat
+    await Future.delayed(const Duration(milliseconds: 120));
+
+    // 1) mailto
+    final mailto = Uri(
+      scheme: 'mailto',
+      path: 'konyabuyuksehirbelediyesi@hs01.kep.tr',
+      // queryParameters: {'subject': 'KBB İletişim', 'body': 'Merhaba,'},
+    );
+    if (await canLaunchUrl(mailto)) {
+      await launchUrl(mailto, mode: LaunchMode.externalApplication);
+      return;
+    }
+
+    // 2) Gmail web compose (simülatörde işe yarayabilir)
+    final gmailWeb = Uri.parse(
+      'https://mail.google.com/mail/?view=cm&to=konyabuyuksehirbelediyesi@hs01.kep.tr',
+    );
+    if (await canLaunchUrl(gmailWeb)) {
+      await launchUrl(gmailWeb, mode: LaunchMode.externalApplication);
+      return;
+    }
+
+    // 3) Son çare: e-posta adresini panoya kopyala
+    await Clipboard.setData(const ClipboardData(text: 'konyabuyuksehirbelediyesi@hs01.kep.tr'));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('E-posta uygulaması bulunamadı. Adres panoya kopyalandı.')),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    int okunmamisBildirimSayisi = BildirimServisi.okunmamisSayisi();
+    final int okunmamisBildirimSayisi = BildirimServisi.okunmamisSayisi();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -54,9 +100,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 onPressed: () async {
                   await Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const BildirimlerSayfasi(),
-                    ),
+                    MaterialPageRoute(builder: (context) => const BildirimlerSayfasi()),
                   );
                   setState(() {});
                 },
@@ -100,25 +144,19 @@ class _AnaSayfaState extends State<AnaSayfa> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.description), // Doküman simgesi
-              title: Text('Dokümanlar'),
+              leading: const Icon(Icons.description),
+              title: const Text('Dokümanlar'),
               onTap: () {
-                Navigator.pop(context); // Drawer'ı kapat
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DokumanlarSayfasi()),
-                );
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  DokumanlarSayfasi()));
               },
             ),
             ListTile(
-              leading: Icon(Icons.contact_page),
-              title: Text('Rehber'),
+              leading: const Icon(Icons.contact_page),
+              title: const Text('Rehber'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RehberSayfasi()),
-                );
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  RehberSayfasi()));
               },
             ),
             ListTile(
@@ -131,7 +169,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
               title: const Text('Yemekhane Menüsü'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => YemekhaneApp()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  YemekhaneApp()));
               },
             ),
             ListTile(
@@ -139,12 +177,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
               title: const Text('Personel Şeması'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PersonelSemasiSayfasi()),
-                );
-
-
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonelSemasiSayfasi()));
               },
             ),
             ListTile(
@@ -152,25 +185,19 @@ class _AnaSayfaState extends State<AnaSayfa> {
               title: const Text('Bizden Biri'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => BizdenBiriSayfasi()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  BizdenBiriSayfasi()));
               },
-            ),ListTile(
-  leading: const Icon(Icons.school),
-  title: const Text('KBB Akademi'),
-  onTap: () async {
-    final url = Uri.parse("https://kbbakademi.edubiz.com.tr/Account/Login?ReturnUrl=%2f");
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
-    } else {
-      throw 'Could not launch $url';
-    }
-  },
-),
+            ),
+            ListTile(
+              leading: const Icon(Icons.school),
+              title: const Text('KBB Akademi'),
+              onTap: _openKbbAkademi,
+            ),
             const Divider(),
             ListTile(
               leading: const Icon(Icons.mail),
               title: const Text('Bize Ulaşın'),
-              onTap: () {},
+              onTap: _mailGonder,
             ),
           ],
         ),
@@ -179,7 +206,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Başkan görseli + Story bileşeni birlikte
+              // Başkan görseli + Story bileşeni
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
                 child: Row(
@@ -196,10 +223,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                         padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(
-                            color: const Color(0xFFFEB716),
-                            width: 3,
-                          ),
+                          border: Border.all(color: const Color(0xFFFEB716), width: 3),
                         ),
                         child: const CircleAvatar(
                           radius: 32,
@@ -208,27 +232,22 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Container(
-                      width: 1,
-                      height: 60,
-                      color: Colors.grey.shade400,
-                    ),
+                    Container(width: 1, height: 60, color: Colors.grey.shade400),
                     const SizedBox(width: 12),
                      Expanded(child: StoryBileseni()),
                   ],
                 ),
               ),
-
-              HaberlerBolumu(),
-              HavaDurumuBolumu(),
-              GununMenusuWidget(),
-              BugunBolumu(),
-              TakvimBolumu(),
-              ],
+              const HaberlerBolumu(),
+               HavaDurumuBolumu(),
+              const GununMenusuWidget(),
+              const BugunBolumu(),
+              const TakvimBolumu(),
+            ],
           ),
         ),
       ),
-      bottomNavigationBar: AltBar(),
+      bottomNavigationBar:  AltBar(),
     );
   }
 }

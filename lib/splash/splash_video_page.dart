@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import 'package:benim_ailem/pages/ana_sayfa/ana_sayfa.dart';
+import 'package:benim_ailem/pages/home_page/ana_sayfa.dart';
 
 class SplashVideoPage extends StatefulWidget {
   const SplashVideoPage({super.key});

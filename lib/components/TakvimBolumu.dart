@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:benim_ailem/pages/etkinlikler/tum_etkinlikler_sayfasi.dart';
+import 'package:benim_ailem/pages/home_page/tum_etkinlikler_sayfasi.dart';
 
 class TakvimBolumu extends StatefulWidget {
   const TakvimBolumu({super.key});
