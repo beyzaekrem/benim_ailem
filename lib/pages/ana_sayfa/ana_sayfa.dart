@@ -14,6 +14,7 @@ import 'package:benim_ailem/pages/right_drawer/bildirimler_sayfasi.dart';
 import 'package:benim_ailem/widgets/alt_bar.dart';
 import 'package:benim_ailem/widgets/youtube_widget.dart';
 import 'package:benim_ailem/services/bildirim_servisi.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AnaSayfa extends StatefulWidget {
   const AnaSayfa({super.key});
@@ -153,12 +154,18 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => BizdenBiriSayfasi()));
               },
-            ),
-            ListTile(
-              leading: const Icon(Icons.school),
-              title: const Text('KBB Akademi'),
-              onTap: () {},
-            ),
+            ),ListTile(
+  leading: const Icon(Icons.school),
+  title: const Text('KBB Akademi'),
+  onTap: () async {
+    final url = Uri.parse("https://kbbakademi.edubiz.com.tr/Account/Login?ReturnUrl=%2f");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch $url';
+    }
+  },
+),
             const Divider(),
             ListTile(
               leading: const Icon(Icons.mail),
