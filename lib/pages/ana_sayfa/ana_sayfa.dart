@@ -10,7 +10,7 @@ import 'package:benim_ailem/pages/left_drawer/rehber/rehber_sayfasi.dart';
 import 'package:benim_ailem/pages/left_drawer/personel/personel_semasi_sayfasi.dart';
 import 'package:benim_ailem/pages/yemek/yemekhane_app.dart';
 import 'package:benim_ailem/pages/bizden_biri/bizden_biri_sayfasi.dart';
-import 'package:benim_ailem/pages/right_drawer/duyurular/bildirimler_sayfasi.dart';
+import 'package:benim_ailem/pages/right_drawer/bildirimler_sayfasi.dart';
 import 'package:benim_ailem/widgets/alt_bar.dart';
 import 'package:benim_ailem/widgets/youtube_widget.dart';
 import 'package:benim_ailem/services/bildirim_servisi.dart';

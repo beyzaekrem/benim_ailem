@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:benim_ailem/widgets/bildirim_detay_sayfasi.dart';
 import 'package:benim_ailem/services/bildirim_servisi.dart';
-
-// API’den çeken liste widget’ı
 import 'package:benim_ailem/pages/right_drawer/haberler/haberler_listesi.dart';
 
 class BildirimlerSayfasi extends StatefulWidget {
@@ -74,7 +72,6 @@ class _BildirimlerSayfasiState extends State<BildirimlerSayfasi>
         children: [
           _buildListView(tumu),
           _buildListView(_getSorted(duyurular)),
-          // ✅ Haberler sekmesi artık API’den
           const HaberlerListesi(),
         ],
       ),
