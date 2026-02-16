@@ -46,7 +46,7 @@ By starting with a robust Flutter scaffold, this project positions itself for fu
 ---
 
 ## Project Structure
-
+```
 android/ # Android configuration
 ios/ # iOS configuration
 lib/ # Dart source code
@@ -60,7 +60,7 @@ macos/ # macOS desktop support
 windows/ # Windows desktop support
 pubspec.yaml # Flutter dependencies
 README.md # Documentation
-
+```
 
 ---
 
